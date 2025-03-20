@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
+
+/* Основные стили */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #121212;
+  font-family: "Roboto Mono", monospace;
+  color: #e0e0e0;
+  box-sizing: border-box;
+}
+
+.timer {
+  font-size: 96px;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 30px 0;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: "Roboto Mono", monospace;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: #2a2a2a;
+  border-color: #505050;
+  color: #ffffff;
+}
+
+.button:active {
+  background: #252525;
+  transform: scale(0.98);
+}
+
+.progress {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  width: 30%;
+  max-width: 100%;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-inner {
+  height: 100%;
+  background: #16d509;
+  width: 0;
+  transition: width 1s ease-in-out;
+}
+
+.message {
+  font-size: 50px;
+  color: #e0e0e0;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Стили для кнопки настроек */
+.settings-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.2s ease;
+}
+
+.settings-button img {
+  width: 24px; /* Размер твоей иконки, измени, если нужно */
+  height: 24px;
+}
+
+.settings-button:hover {
+  transform: scale(1.1);
+}
+
+.settings-button:active {
+  transform: scale(0.95);
+}
+
+/* Стили для модального окна */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Более темный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  color: #e0e0e0;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+  min-width: 350px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Тень для эффекта */
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: #e0e0e0; /* Зеленый акцент */
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.settings-row label {
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.settings-input {
+  width: 60px;
+  padding: 8px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  color: #e0e0e0;
+  font-family: "Roboto Mono", monospace;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.settings-input:focus {
+  border-color: #16d509; /* Зеленая обводка при фокусе */
+  outline: none;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.save-button {
+  padding: 10px 25px;
+  background: #2a2a2a; /* Зеленая кнопка */
+  border: none;
+  color: #ffffff;
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #606060;
+  transition: background 0.2s ease;
+}
+
+.save-button:hover {
+  background: #333333;
+}
+
+.close-button {
+  padding: 10px 25px;
+  background: #333333;
+  border: 1px solid #606060;
+  color: #e0e0e0;
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close-button:hover {
+  background: #2a2a2a;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.volume-slider {
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+  height: 6px;
+  background: #3a3a3a;
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #16d509;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #fefefe;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.button-cycle {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: "Roboto Mono", monospace;
+  border: 1px solid #3a3a3a;
+  border-top-color: rgb(58, 58, 58);
+  border-right-color: rgb(58, 58, 58);
+  border-bottom-color: rgb(58, 58, 58);
+  border-left-color: rgb(58, 58, 58);
+  border-radius: 6px;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
